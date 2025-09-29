@@ -9,6 +9,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,27 +38,27 @@
                             <a href="#accueil" class="nav-link active">Accueil</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#services" class="nav-link">
+                            <a href="services.html" class="nav-link">
                                 Nos Services
                                 <i class="fas fa-chevron-down"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#zones" class="nav-link">Zones d'intervention</a>
+                            <a href="zones-intervention.html" class="nav-link">Zones d'intervention</a>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Contact Button -->
                 <div class="navbar-actions">
-                    <a href="#contact" class="btn btn-contact">
-                        <i class="fas fa-phone"></i>
+                    <a href="https://wa.me/33769895417" class="btn btn-contact" aria-label="Contacter OneTech sur WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
                         NOUS CONTACTER
                     </a>
                 </div>
 
                 <!-- Mobile Menu Toggle -->
-                <button class="navbar-toggle" id="navbar-toggle">
+                <button class="navbar-toggle" id="navbar-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -67,6 +68,9 @@
     </header>
 
     <!-- Main Content -->
+    <!-- Header Spacer -->
+    <div class="header-spacer"></div>
+    
     <main>
         <!-- Hero Section -->
         <section class="hero" id="accueil">
@@ -397,5 +401,6 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 </html>
