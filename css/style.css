@@ -921,7 +921,7 @@ body {
     }
 }
 
-/* ===== MISSION SECTION ===== */
+/* ===== MISSION SECTION - NOUVELLE VERSION SIMPLE ===== */
 .mission-section {
     padding: 100px 0;
     background: #f8f9fa;
@@ -935,146 +935,151 @@ body {
     margin-bottom: 4rem;
 }
 
-.mission-grid {
+/* Grille des cartes flip - 4 colonnes alignées */
+.flip-cards-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-.mission-card {
+/* Carte flip - Structure de base */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 350px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
     position: relative;
-    height: 400px;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.mission-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 149, 0, 0.1) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 2;
-}
-
-.mission-card:hover::before {
-    opacity: 1;
-}
-
-.mission-card:hover {
-    transform: translateY(-15px) rotateY(5deg);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
-}
-
-.mission-card:hover .card-bg-img {
-    transform: scale(1.1) rotate(2deg);
-}
-
-.mission-card:hover .card-title {
-    color: var(--primary-orange);
-    transform: translateY(-5px);
-}
-
-.mission-card .card-title {
-    transition: all 0.3s ease;
-}
-
-.mission-card:hover .card-icon {
-    transform: rotate(360deg) scale(1.2);
-    background: var(--primary-orange);
-}
-
-.mission-card .card-icon {
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
 }
 
-.card-bg-img {
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Faces avant et arrière */
+.flip-card-front, 
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    /* IMPORTANT: Empêcher le défilement et maintenir la position */
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.flip-card-front {
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.flip-card-back {    
+    background: linear-gradient(135deg, #ff9500 0%, #ff7300 100%);
+    color: white;
+
+    
+    transform: rotateY(180deg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* IMPORTANT: Maintenir la même hauteur et position */
+    box-sizing: border-box;
+    overflow: hidden;
+    max-height: 350px;
+    cursor: pointer;
+}
+
+/* Image de la face avant */
+.flip-card-front img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
 }
 
-.mission-card:hover .card-bg-img {
-    transform: scale(1.05);
-}
-
+/* Overlay de la face avant */
 .card-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+    background: rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 2rem;
-    z-index: 2;
-    transition: var(--transition);
-}
-
-.mission-card:hover .card-overlay {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
-}
-
-.card-title {
     color: white;
-    font-size: 1.2rem;
+}
+
+.card-overlay h3 {
+    font-size: 1.4rem;
     font-weight: 600;
-    line-height: 1.3;
     margin: 0;
 }
 
-.card-icon {
+/* Bouton + */
+.flip-btn {
     align-self: flex-end;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    border: none;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.card-icon i {
+    background: #ff9500;
     color: white;
-    font-size: 1.2rem;
-    transition: var(--transition);
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.mission-card:hover .card-icon {
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(45deg);
+.flip-btn:hover {
+    background: #ff7300;
+    transform: scale(1.1);
 }
 
-/* ===== MISSION RESPONSIVE ===== */
+/* Contenu de la face arrière */
+.flip-card-back h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    margin-top: 0.3rem;
+    font-weight: 600;
+}
+
+.flip-card-back p {
+    font-size: 0.78rem;
+    line-height: 1.3;
+    margin-bottom: 0.6rem;
+    text-align: justify;
+    flex-shrink: 1;
+}
+
+/* Bouton × supprimé - Clic sur la carte pour fermer */
+
+/* Responsive - Tablette */
 @media (max-width: 1024px) {
-    .mission-grid {
+    .flip-cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
 }
 
+/* Responsive - Mobile */
 @media (max-width: 768px) {
     .mission-section {
         padding: 60px 0;
@@ -1085,18 +1090,38 @@ body {
         margin-bottom: 3rem;
     }
     
-    .mission-grid {
+    .flip-cards-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        padding: 0 20px;
     }
     
-    .mission-card {
-        height: 250px;
+    .flip-card {
+        height: 350px;
     }
     
-    .card-title {
-        font-size: 1.1rem;
+    .card-overlay {
+        padding: 1.5rem;
+    }
+    
+    .card-overlay h3 {
+        font-size: 1.2rem;
+    }
+    
+    .flip-card-back {
+        padding: 1.2rem;
+        max-height: 350px;
+        overflow: hidden;
+    }
+    
+    .flip-card-back h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .flip-card-back p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
     }
 }
 
@@ -1105,16 +1130,36 @@ body {
         font-size: 1.8rem;
     }
     
-    .mission-card {
-        height: 220px;
+    .flip-card {
+        height: 300px;
     }
     
     .card-overlay {
-        padding: 1.5rem;
+        padding: 1rem;
     }
     
-    .card-title {
-        font-size: 1rem;
+    .flip-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .flip-card-back {
+        padding: 0.8rem;
+        max-height: 300px;
+        overflow: hidden;
+    }
+    
+    .flip-card-back h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .flip-card-back p {
+        font-size: 0.72rem;
+        text-align: left;
+        line-height: 1.2;
+        margin-bottom: 0.4rem;
     }
 }
 

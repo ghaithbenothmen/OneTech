@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initInteractionAnimations();
         initScrollProgressBar();
         initServicesPage();
+        initMissionCardFlip();
     } catch (error) {
         console.error('Erreur lors de l\'initialisation:', error);
     }
@@ -1119,5 +1120,101 @@ function initLazyLoading() {
                 img.style.opacity = '1';
             });
         }
+    });
+}
+
+// ===== MISSION CARDS FLIP EFFECT - VERSION SIMPLE ===== 
+function initMissionCardFlip() {
+    // Attendre que le DOM soit chargé
+    setTimeout(() => {
+        const flipCards = document.querySelectorAll('.flip-card');
+        
+        flipCards.forEach(card => {
+            const flipBtn = card.querySelector('.flip-btn');
+            const cardInner = card.querySelector('.flip-card-inner');
+            
+            // Clic sur le bouton + pour retourner
+            if (flipBtn) {
+                flipBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Sauvegarder la position de défilement actuelle
+                    const currentScrollY = window.scrollY;
+                    
+                    // Fermer toutes les autres cartes
+                    flipCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('flipped');
+                        }
+                    });
+                    
+                    // Retourner la carte actuelle
+                    card.classList.add('flipped');
+                    
+                    // Restaurer la position de défilement pour empêcher le mouvement
+                    setTimeout(() => {
+                        window.scrollTo(0, currentScrollY);
+                    }, 10);
+                });
+            }
+            
+            // Clic sur toute la carte pour la remettre à l'endroit
+            if (cardInner) {
+                cardInner.addEventListener('click', (e) => {
+                    // Seulement si la carte est retournée
+                    if (card.classList.contains('flipped')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Sauvegarder la position de défilement actuelle
+                        const currentScrollY = window.scrollY;
+                        
+                        card.classList.remove('flipped');
+                        
+                        // Restaurer la position de défilement
+                        setTimeout(() => {
+                            window.scrollTo(0, currentScrollY);
+                        }, 10);
+                    }
+                });
+            }
+        });
+        
+        // Fermeture avec Échap
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                flipCards.forEach(card => card.classList.remove('flipped'));
+            }
+        });
+        
+    }, 200);
+}
+
+// Animation d'entrée pour les cartes mission (amélioration)
+function enhanceMissionCardAnimations() {
+    if (!window.IntersectionObserver) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const card = entry.target;
+                const index = Array.from(document.querySelectorAll('.mission-card')).indexOf(card);
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0) scale(1)';
+                }, index * 100);
+                
+                observer.unobserve(card);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.mission-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px) scale(0.9)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
     });
 }
