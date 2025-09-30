@@ -2664,3 +2664,222 @@ body {
     margin: 0;
     font-size: 0.95rem;
 }
+
+/* ===== RESPONSIVE - ZONES D'INTERVENTION ===== */
+
+/* Tablettes */
+@media (max-width: 1024px) {
+    .zones-hero-title {
+        font-size: 3rem;
+        letter-spacing: 2px;
+    }
+    
+    .zones-hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .zones-presentation-content {
+        gap: 2.5rem;
+    }
+    
+    .zones-title {
+        font-size: 2.4rem;
+    }
+    
+    .zones-description p {
+        font-size: 1.1rem;
+    }
+    
+    .contact-card {
+        padding: 2rem;
+    }
+    
+    .contact-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .map-wrapper {
+        height: 350px;
+    }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+    .zones-hero {
+        min-height: calc(100vh - 70px);
+    }
+    
+    .zones-hero-title {
+        font-size: 2.5rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .zones-hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .zones-presentation {
+        padding: 3rem 0;
+    }
+    
+    .zones-presentation-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .zones-text {
+        order: 2;
+    }
+    
+    .zones-info {
+        order: 1;
+    }
+    
+    .zones-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .zones-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .zones-description p {
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .zones-features {
+        gap: 1rem;
+    }
+    
+    .zones-features .feature-item {
+        padding: 1rem;
+    }
+    
+    .zones-features .feature-item span {
+        font-size: 1rem;
+    }
+    
+    .contact-card {
+        padding: 1.5rem;
+    }
+    
+    .contact-header i {
+        font-size: 2rem;
+    }
+    
+    .contact-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .contact-details p {
+        font-size: 1rem;
+    }
+    
+    .zones-map-section {
+        padding: 3rem 0 4rem 0;
+    }
+    
+    .zones-map-section .section-title {
+        font-size: 2rem;
+    }
+    
+    .map-container {
+        margin: 0 1rem;
+        border-radius: 15px;
+    }
+    
+    .map-wrapper {
+        height: 300px;
+    }
+}
+
+/* Petits mobiles */
+@media (max-width: 480px) {
+    .zones-hero-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .zones-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .zones-presentation {
+        padding: 2rem 0;
+    }
+    
+    .zones-title {
+        font-size: 1.8rem;
+    }
+    
+    .zones-description p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .zones-features .feature-item {
+        padding: 0.8rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .zones-features .feature-item i {
+        font-size: 1.5rem;
+    }
+    
+    .zones-features .feature-item span {
+        font-size: 0.9rem;
+    }
+    
+    .contact-card {
+        padding: 1.2rem;
+    }
+    
+    .contact-header i {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .contact-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .contact-details p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    .zones-map-section {
+        padding: 2rem 0 3rem 0;
+    }
+    
+    .zones-map-section .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .map-container {
+        margin: 0 0.5rem;
+        border-radius: 12px;
+    }
+    
+    .map-wrapper {
+        height: 250px;
+    }
+}
