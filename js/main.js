@@ -248,6 +248,14 @@ function initNavigation() {
         if (navLink) {
             navLink.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
+                    // Vérifier si le lien a un href valide (pas # ou vide)
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#' && href !== '' && !href.startsWith('#')) {
+                        // Laisser la navigation se faire normalement
+                        closeMobileMenu();
+                        return;
+                    }
+                    // Sinon, empêcher la navigation et toggle le dropdown
                     e.preventDefault();
                     toggleDropdown(dropdown);
                 }
